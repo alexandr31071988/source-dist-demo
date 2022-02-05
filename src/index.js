@@ -4,16 +4,10 @@ import './index.css';
 import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Redaktirovanie from './Redaktirovanie/Redaktirovanie';
-import Uvedomlenie from './Uvedomlenie/Uvedomlenie';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      
-    />
-    <Redaktirovanie/>
-    <Uvedomlenie/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
