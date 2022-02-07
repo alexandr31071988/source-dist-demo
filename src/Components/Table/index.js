@@ -2,6 +2,7 @@ import {TableRows, tableData} from "../../Mocks/tableData"
 import React from "react"
 import Modal from '../Modal'
 import Redaktirovanie from '../Redaktirovanie/Redaktirovanie'
+import Uvedomlenie from '../Uvedomlenie/Uvedomlenie'
 import {useState, useCallback} from 'react'
 
 
@@ -118,7 +119,7 @@ function TableLine(props) {
 
   const handleOpenEditModalCb = useCallback(() => {
     handleOpenEditModal(true)
-  }, [])
+  }, [handleOpenEditModal])
   return (
     <div className={`frame81512813 ${className || ""}`}>
       <div className="frame81512819">
@@ -200,16 +201,22 @@ const TableHeader = () => {
 }
 
 const Table = () => {
-  const [isOpenModal, setIsOpenModal] = useState(false)
-  const handleCloseModal = useCallback(() => {
-    setIsOpenModal(false)
-  }, [])
+  const [isOpenEditModal, setIsOpenEditModal] = useState(false)
+  const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false)
+
+  const handleCloseEditModal = useCallback(() => {
+    setIsOpenEditModal(false)
+  }, [setIsOpenEditModal])
+
+  const handleCloseConfirmModal = useCallback(() => {
+    setIsOpenConfirmModal(false)
+  }, [setIsOpenConfirmModal])
 
   return <div className="spravochnik-istochniki a-a">
     <TableHeader/>
     <X0gfyXL {...TableRows} />
     <div className="frame81512815">
-      {tableData().map((line, key) => <TableLine key={key} {...line} handleOpenEditModal={setIsOpenModal}/>)}
+      {tableData().map((line, key) => <TableLine key={key} {...line} handleOpenEditModal={setIsOpenEditModal}/>)}
     </div>
     <div className="overlap-group2">
       <div className="pagination">
@@ -238,7 +245,7 @@ const Table = () => {
             </div>
           </div>
           <div className="items-1-page-number-1-default-5">
-            <div className="p-number-6 valign-text-middle roboto-medium-eerie-black-10px">
+            <div className="p-number-6 valign-text-middle roboto-medium-eerie-black-10px" >
               20
             </div>
           </div>
@@ -246,8 +253,12 @@ const Table = () => {
       </div>
     </div>
 
-    <Modal isOpen={isOpenModal} setIsOpenModal={handleCloseModal}>
-      <Redaktirovanie/>
+    <Modal isOpen={isOpenEditModal} setIsOpenModal={handleCloseEditModal}>
+      <Redaktirovanie onClose={handleCloseEditModal} onOpenConfirmModal={setIsOpenConfirmModal}/>
+    </Modal>
+
+    <Modal isOpen={isOpenConfirmModal} setIsOpenModal={handleCloseConfirmModal}>
+      <Uvedomlenie setIsOpenModal={handleCloseConfirmModal}/>
     </Modal>
   </div>
 }

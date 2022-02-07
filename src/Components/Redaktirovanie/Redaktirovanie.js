@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React, {Component, useCallback} from "react";
 
 
 // eslint-disable-next-line
@@ -13,6 +13,8 @@ render() {
       frame81512687Props={screen3Data.frame81512687Props}
       frame815126872Props={screen3Data.frame815126872Props}
       layoutAutowidthTypePrimaryStateDefa={screen3Data.layoutAutowidthTypePrimaryStateDefa}
+      handleClose={this.props.onClose}
+      handleSave={this.props.onOpenConfirmModal}
   />
 );
   }
@@ -28,12 +30,14 @@ function Screen3(props) {
     frame81512687Props,
     frame815126872Props,
     layoutAutowidthTypePrimaryStateDefa,
+    handleClose,
+    handleSave
   } = props;
 
   return (
     <div className="container-center-horizontal">
       <div className="redaktirovanie-istochnika screen">
-        <G0CEtL text1={frame81512689Props.text1} />
+        <G0CEtL text1={frame81512689Props.text1} handleClose={handleClose}/>
         <div className="frame-81512688">
           <Frame81512689
             spanText={frame81512689Props2.spanText}
@@ -47,7 +51,7 @@ function Screen3(props) {
           <Frame81512687 text5={frame81512687Props.text5} />
           <Frame81512687 text5={frame815126872Props.text5} />
         </div>
-        <LayoutAutowidthTypePrimaryStateDefa>
+        <LayoutAutowidthTypePrimaryStateDefa handleSave={handleSave} handleClose={handleClose}>
           {layoutAutowidthTypePrimaryStateDefa.children}
         </LayoutAutowidthTypePrimaryStateDefa>
       </div>
@@ -57,7 +61,7 @@ function Screen3(props) {
 
 
 function G0CEtL(props) {
-  const { text1 } = props;
+  const { text1, handleClose } = props;
 
   return (
     <div className="frame-2384">
@@ -65,7 +69,7 @@ function G0CEtL(props) {
         {text1}
       </div>
       <div className="x-1">
-        <div className="overlap-group-3">
+        <div className="overlap-group-3" onClick={handleClose}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{position:'absolute', width:'24', height:'24', right:'32', top:'24'}}>
 <path d="M20 4L4 20" stroke="#7A7C8B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M4 4L20 20" stroke="#7A7C8B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -166,11 +170,16 @@ function MediumSelected() {
 
 
 function LayoutAutowidthTypePrimaryStateDefa(props) {
-  const { children } = props;
+  const { children, handleSave, handleClose } = props;
+
+  const handleOpenModal = useCallback(() => {
+    handleSave(true)
+    handleClose()
+  }, [handleSave, handleClose])
 
   return (
     <div className="primary-7">
-      <div className="default">
+      <div className="default" onClick={handleOpenModal}>
         {children}
       </div>
     </div>
