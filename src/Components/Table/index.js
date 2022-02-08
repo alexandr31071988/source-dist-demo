@@ -1,8 +1,8 @@
 import {TableRows, tableData} from "../../Mocks/tableData"
 import React from "react"
 import Modal from '../Modal'
-import Redaktirovanie from '../Redaktirovanie/Redaktirovanie'
-import Uvedomlenie from '../Uvedomlenie/Uvedomlenie'
+import Editing from '../Editing/Editing'
+import Notification from '../Notification/Notification'
 import {useState, useCallback} from 'react'
 
 
@@ -22,7 +22,7 @@ function SearchMedium(_props) {
   }
 }
 
-function Y1Oozr(props) {
+function MediaLine(props) {
   const { children } = props;
   return (
     <div className="primary">
@@ -33,7 +33,7 @@ function Y1Oozr(props) {
   );
 }
 
-function X0gfyXL(props) {
+function ColumnTable(props) {
   const { p, p2, p3, p4, p5, p6, p7, p22, p8 } = props;
 
   return (
@@ -175,7 +175,7 @@ const TableHeader = () => {
       </div>
     </div>
     <div className="frame2511">
-      <Y1Oozr>СМИ</Y1Oozr>
+      <MediaLine>СМИ</MediaLine>
       <div className="primary-2">
         <div className="p-13 roboto-medium-plump-purple-10px">
           Соцсети
@@ -214,7 +214,7 @@ const Table = () => {
 
   return <div className="spravochnik-istochniki a-a">
     <TableHeader/>
-    <X0gfyXL {...TableRows} />
+    <ColumnTable {...TableRows} />
     <div className="frame81512815">
       {tableData().map((line, key) => <TableLine key={key} {...line} handleOpenEditModal={setIsOpenEditModal}/>)}
     </div>
@@ -254,11 +254,11 @@ const Table = () => {
     </div>
 
     <Modal isOpen={isOpenEditModal} setIsOpenModal={handleCloseEditModal}>
-      <Redaktirovanie onClose={handleCloseEditModal} onOpenConfirmModal={setIsOpenConfirmModal}/>
+      <Editing onClose={handleCloseEditModal} onOpenConfirmModal={setIsOpenConfirmModal}/>
     </Modal>
 
     <Modal isOpen={isOpenConfirmModal} setIsOpenModal={handleCloseConfirmModal}>
-      <Uvedomlenie setIsOpenModal={handleCloseConfirmModal}/>
+      <Notification setIsOpenModal={handleCloseConfirmModal}/>
     </Modal>
   </div>
 }
