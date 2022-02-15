@@ -1,8 +1,8 @@
 import {TableRows, tableData} from "../../Mocks/tableData"
 import React from "react"
 import Modal from '../Modal'
-import Editing from '../Editing/Editing'
-import Notification from '../Notification/Notification'
+import Editing from '../Editing/index'
+import Notification from '../Notification/index'
 import {useState, useCallback} from 'react'
 
 
