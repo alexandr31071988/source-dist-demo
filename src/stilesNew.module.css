@@ -1,7 +1,0 @@
-.container-centr {
-   display: flex;
-   flex-direction: row;
-   justify-content: center;
-   pointer-events: none;
-   width: 100%;
-}

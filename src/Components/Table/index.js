@@ -3,7 +3,7 @@ import {tableRows, tableLines} from '../../Mocks/tableData'
 
 const THead = () => {
   return(
-    <thead>
+    <thead className='thead__head'>
       <tr>
         {tableRows.map((rowName, key) => <th key={rowName + key}>{rowName}</th>)}
       </tr>
@@ -25,7 +25,7 @@ const TBody = () => {
 const Table = () => {
 
   return(
-    <table>
+    <table className='table__container'>
       <THead/>
       <TBody/>
     </table>

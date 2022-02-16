@@ -5,7 +5,7 @@ import Table from './Components/Table'
 function App() {
 
   return (
-      <main>
+      <main className='main__container'>
         <Table/>
       </main>
   );

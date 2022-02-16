@@ -1,7 +1,20 @@
-.container-centr {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  pointer-events: none;
-  width: 100%;
+.main__container {
+   width: 1280px;
+   height: 1045px;
 }
+
+.table__container {
+   width: 1280px;
+   height: 720px;
+}
+
+.thead__head {
+   position: relative;
+   width: 1280px;
+   height: 43px;
+   right: 15px;
+   padding: 5px 10px ;
+}
+
+
+
