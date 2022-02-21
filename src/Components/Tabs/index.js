@@ -1,12 +1,14 @@
 import React, {useState} from "react"
 
+import './style.css'
+
 const Tabs = ({tabList}) => {
   const [activeTabs, setActiveTabs] = useState([])
 
   return (
-    <div>
+    <div className='tablist__container'>
       {tabList && tabList.map((tab, tabKey) => {
-        return <button
+        return <button className="button__btn"
           key={tabKey + tab.name}
           onClick={() => {
             if(!activeTabs.find(f => f === tab.name)){
@@ -23,7 +25,7 @@ const Tabs = ({tabList}) => {
               })
             }
           }}
-          style={{backgroundColor: activeTabs.find(f => f === tab.name) ? "#ccc" : "#fff"}}
+          style={{backgroundColor: activeTabs.find(f => f === tab.name) ? "#5E35B1" : "#fff"}}
         >
           {tab.name}
         </button>

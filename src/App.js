@@ -25,7 +25,7 @@ function App() {
     {name: "СМИ", action: handleTabAction},
     {name: "Соцсети", action: handleTabAction},
     {name: "Телеграм", action: handleTabAction},
-    {name: "Оппозиция", action: handleTabAction}
+    {name: "Отобразить все", action: handleTabAction}
   ]
 
   return (

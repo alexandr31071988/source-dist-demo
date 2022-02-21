@@ -1,0 +1,33 @@
+.thead__container {
+   display: flex;
+   width: 1280px;
+   height: 43px;
+   background: #F5F6FA;
+}
+
+.thead__line {
+   width: 1248px;
+   height: 23px;
+   display: flex;
+   margin-block: auto;
+}
+
+.body__container {
+   display: flex;
+   width: 1280px;
+   height: 720px;
+   flex-direction: column;
+   align-items: flex-start;
+}
+
+.table__row_container {
+   width: 1280px;
+   height: 72px;
+   display: flex;
+   align-items: center;
+}
+
+.table__data_string {
+   display: flex;
+   margin-right: 10px;
+}

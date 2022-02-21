@@ -1,0 +1,13 @@
+.tablist__container {
+   width: 752px;
+   height: 32px;
+   display: flex;
+   margin-left: 496px;
+}
+
+.button__btn {
+   border-radius: 4px;
+}
+
+
+
