@@ -1,12 +1,22 @@
 .tablist__container {
-   width: 752px;
    height: 32px;
    display: flex;
-   margin-left: 496px;
 }
 
 .button__btn {
    border-radius: 4px;
+   padding: 8px 12px;
+   font-size: 10px;
+   margin: 0 4px;
+   cursor: pointer;
+   background: rgba(94, 53, 177, 0.1);
+   border: 0;
+   color:#5E35B1 ;
+}
+
+.button__btn.active {
+   background-color: #5E35B1;
+   color: #fff;
 }
 
 

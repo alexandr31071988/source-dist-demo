@@ -1,0 +1,15 @@
+.search-field {
+    padding: 8px 8px 8px 30px;
+    border: 1px solid #E5E5E5;
+    border-radius: 4px;
+    position: relative;
+    width: 488px;
+    background-image: url("../../assets/Search.svg");
+    background-repeat: no-repeat;
+    background-position: 9px 9px;
+    margin-right: 4px;
+}
+
+.search-field::placeholder {
+    color: #BABDCD;
+}
