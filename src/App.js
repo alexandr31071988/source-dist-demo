@@ -1,19 +1,23 @@
 import React, {useCallback, useState} from 'react'
 
-import {tableLines} from './Mocks/tableData'
+import {getTableData} from './Mocks/tableData'
 
 import Table from './Components/Table'
 import Tabs from './Components/Tabs'
 import Search from './Components/Search'
+import Pagination from './Components/Pagination'
 
 function App() {
-  const [tableData, setTableData] = useState(tableLines)
+  const [pagPage, setPagPage] = useState(1)
+  const [pagLimit, setPagLimit] = useState(5)
+  const [tableData, setTableData] = useState(getTableData(pagLimit, pagPage)[0])
+
   const [activeTabs, setActiveTabs] = useState([])
   const [searchTitle, setSearchTitle] = useState('')
 
   const handleTabAction = useCallback((filteredValues) => {
     console.log(filteredValues)
-    const filteredTableData = tableLines.filter(f => {
+    const filteredTableData = getTableData[0](pagLimit, pagPage).filter(f => {
       if(filteredValues.find(tab => f.sourceType === tab)) {
         return true
       }
@@ -24,7 +28,7 @@ function App() {
   }, [setTableData])
 
   const resetFilters = useCallback(() => {
-    setTableData(tableLines)
+    setTableData(getTableData[0](pagLimit, pagPage))
     setActiveTabs([])
     setSearchTitle("")
   }, [setTableData])
@@ -33,7 +37,7 @@ function App() {
     const searchedTitle = e.target.value
     setSearchTitle(searchedTitle)
     setTableData(() => {
-      return tableLines.filter(f => f.sourceName.includes(searchedTitle))
+      return getTableData[0](pagLimit, pagPage).filter(f => f.sourceName.includes(searchedTitle))
     })
   }, [setSearchTitle, setTableData])
 
@@ -44,6 +48,13 @@ function App() {
     {name: "Оппозиция", action: handleTabAction}
   ]
 
+  const handleChangePagination = useCallback((e) => {
+    console.log("eee")
+    const pageN = Number(e.target.innerText)
+    setPagPage(pageN)
+    setTableData(getTableData(pagLimit, pageN)[0])
+  }, [setPagPage, pagLimit, setTableData])
+
   return (
     <main className='main__container'>
       <header>
@@ -53,6 +64,7 @@ function App() {
       </header>
 
       <Table tableLines={tableData} />
+      <Pagination currentPage={pagPage} countPages={getTableData(pagLimit, pagPage)[1]} handleChangePagination={handleChangePagination}/>
     </main>
   )
 }

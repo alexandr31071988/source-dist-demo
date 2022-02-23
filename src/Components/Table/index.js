@@ -7,7 +7,13 @@ const THead = () => {
   return(
     <thead className='thead__container'>
       <tr className='thead__line'>
-        {Object.values(tableRows).map((row, key) => <th className='thead__row_name' key={row.title + key}>{row.title}</th>)}
+        {Object.values(tableRows).map((row, key) => <th
+          className='thead__row_name'
+          key={row.title + key}
+          style={{maxWidth: row.maxWidth}}
+        >
+          {row.title}
+        </th>)}
       </tr>
     </thead>
   )
