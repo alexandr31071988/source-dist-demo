@@ -1,14 +1,20 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500");
 
 .main__container {
    width: 1280px;
    height: 1045px;
 }
 
+:root {
+   --font-family-roboto: 'Roboto';
+}
+
 .clear-btn {
-   border: 1px solid #d3d3d9;
+   border: 1px solid #E5E5E5;
+   background-color: #fff;
    border-radius: 4px;
    color: #7A7C8B;
-   padding: 8px 12px;
+   padding: 10px 8px;
    font-size: 10px;
    cursor: pointer;
    display: flex;

@@ -49,7 +49,7 @@ function App() {
       <header>
         <Search setSearchTitle={setSearchTitle} searchTitle={searchTitle} handleSearch={handleSearch}/>
         <Tabs tabList={tabList} activeTabs={activeTabs} setActiveTabs={setActiveTabs}/>
-        <button className="clear-btn" onClick={resetFilters}>отобразить все</button>
+        <button className="clear-btn" onClick={resetFilters}>Отобразить все</button>
       </header>
 
       <Table tableLines={tableData} />
