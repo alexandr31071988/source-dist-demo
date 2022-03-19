@@ -54,7 +54,7 @@ export const tableRows = {
   edit: {
     title: "",
     content:
-      (text) => <img src={Edit} />
+      (text, onClick) => <img onClick={onClick} src={Edit} />
   },
 }
 
@@ -1146,9 +1146,9 @@ export const getTableData = (limit, page) => {
   let currentLimit = limit, tempArray = []
   tableLines.forEach((item, index) => {
     if(index < currentLimit - 1){
-      tempArray.push(item)
+      tempArray.push(Object.assign(item, {edit: index}))
     } else {
-      tempArray.push(item)
+      tempArray.push(Object.assign(item, {edit: index}))
       currentLimit = currentLimit + limit
       pages.push(tempArray)
       tempArray = []
