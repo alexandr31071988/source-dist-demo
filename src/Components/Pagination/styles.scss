@@ -1,6 +1,7 @@
 .pagination__container {
   display: flex;
   justify-content: center;
+  padding-top: 32px;
 
   .item {
     cursor: pointer;
@@ -8,6 +9,9 @@
     height: 25px;
     margin: 2.75px;
     border-radius: 2px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 22px;
 
     &:hover {
       background: #F5F6FA;
