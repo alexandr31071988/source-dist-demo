@@ -1,6 +1,9 @@
 import {Formik} from 'formik'
 import CloseIcon from '../../assets/closeIcon.svg'
 import './style.scss'
+import Modal from "../Modal";
+import React, {useState, useCallback} from "react"
+import Confirm from "../Confirm";
 
 const validate = values => {
   const errors = {};
@@ -10,6 +13,9 @@ const validate = values => {
 }
 
 const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
+  const [isOpenConfirm, setIsOpenConfirm] = useState(false)
+
+
   return (
     <>
       <div className="edit-form-title"><h1>Edit Source</h1> <img src={CloseIcon} onClick={onCloseEditForm}/></div>
@@ -17,9 +23,10 @@ const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
         initialValues={initialState}
         validate={validate}
         onSubmit={(values, {setSubmitting}) => {
-          onEditTable(values)
+          //onEditTable(values)
           setSubmitting(false)
-          onCloseEditForm()
+          setIsOpenConfirm(true)
+          //onCloseEditForm()
         }}
       >
         {({
@@ -31,48 +38,62 @@ const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
             handleSubmit,
             isSubmitting,
             /* and other goodies */
-          }) => (
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="sourceName"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.sourceName}
-            />
-            {errors.sourceName && touched.sourceName && errors.sourceName}
-            <input
-              type="text"
-              name="capacity"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.capacity}
-            />
-            {errors.capacity && touched.capacity && errors.capacity}
+          }) => {
 
-            <input
-              type="checkbox"
-              name="isOpposition"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              checked={values.isOpposition}
-            />
-            {errors.isOpposition && touched.isOpposition && errors.isOpposition}
+          const handleCloseConfirmModal = () => setIsOpenConfirm(false)
+          return (
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="sourceName"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.sourceName}
+              />
+              {errors.sourceName && touched.sourceName && errors.sourceName}
+              <input
+                type="text"
+                name="capacity"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.capacity}
+              />
+              {errors.capacity && touched.capacity && errors.capacity}
 
-            <input
-              type="checkbox"
-              name="origin"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              checked={values.origin}
-            />
-            {errors.origin && touched.origin && errors.origin}
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-          </form>
-        )}
+              <input
+                type="checkbox"
+                name="isOpposition"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.isOpposition}
+              />
+              {errors.isOpposition && touched.isOpposition && errors.isOpposition}
+
+              <input
+                type="checkbox"
+                name="origin"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.origin}
+              />
+              {errors.origin && touched.origin && errors.origin}
+              <button type="submit" disabled={isSubmitting}>
+                Submit
+              </button>
+              <Modal isOpen={isOpenConfirm} setIsOpenModal={handleCloseConfirmModal}>
+                <Confirm
+                  values={values}
+                  onEditTable={onEditTable}
+                  setIsOpenModal={handleCloseConfirmModal}
+                  onCloseEditForm={onCloseEditForm}
+                  initialState={initialState}
+                />
+              </Modal>
+            </form>
+          )
+        }}
       </Formik>
+
     </>
   )
 }
