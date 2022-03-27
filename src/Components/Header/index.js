@@ -28,9 +28,7 @@ const Header = ({setTableData, pagLimit, pagPage}) => {
     const handleSearch = useCallback((e) => {
         const searchedTitle = e.target.value
         setSearchTitle(searchedTitle)
-        setTableData(() => {
-            return getTableData(pagLimit, pagPage)[0].filter(f => f.sourceName.includes(searchedTitle))
-        })
+        setTableData(getTableData(pagLimit, pagPage)[0].filter(f => f.sourceName.includes(searchedTitle)))
     }, [setSearchTitle, setTableData, pagLimit, pagPage])
 
     const tabList = useMemo(() => [
