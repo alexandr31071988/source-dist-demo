@@ -23,7 +23,6 @@ const THead = () => {
 const TBody = ({tableLines, onEditTable}) => {
   const [editData, setEditData] = useState(null)
   const handleChangeEditData = (value) => () => setEditData(() => value)
-
   return (
     <tbody className='body__container'>
       {tableLines && tableLines.map((tableLine, tableLineKey) => <tr className='table__row_container' key={JSON.stringify(tableLine) + tableLineKey}>

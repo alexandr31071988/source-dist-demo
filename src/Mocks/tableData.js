@@ -1156,3 +1156,20 @@ export const getTableData = (limit, page) => {
   })
   return [pages[page - 1], pages.length]
 }
+
+export const getTablePageData = (data) => (limit, page) => {
+  const pages = []
+  let currentLimit = limit, tempArray = []
+  data.forEach((item, index) => {
+    if(index < currentLimit - 1){
+      tempArray.push(Object.assign(item, {edit: index}))
+    } else {
+      tempArray.push(Object.assign(item, {edit: index}))
+      currentLimit = currentLimit + limit
+      pages.push(tempArray)
+      tempArray = []
+    }
+  })
+
+  return [pages[page - 1], pages.length]
+}
