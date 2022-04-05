@@ -12,6 +12,7 @@ export const EDIT_SOURCE = `${moduleName}/EDIT_SOURCE`
 export const REMOVE_SOURCE = `${moduleName}/REMOVE_SOURCE`
 export const EDIT_PAGE_LIMIT = `${moduleName}/EDIT_PAGE_LIMIT`
 export const EDIT_PAGE_NUMBER = `${moduleName}/EDIT_PAGE_NUMBER`
+export const EDIT_PAGE_TABS = `${moduleName}/EDIT_PAGE_TABS`
 
 
 /**
@@ -21,6 +22,8 @@ export const EDIT_PAGE_NUMBER = `${moduleName}/EDIT_PAGE_NUMBER`
 
 export const ReducerRecord = {
   sourceList: [],
+  tabList: ["СМИ", "Соцсети", "Телеграм", "Оппозиция"],
+  activeTabs: [],
   editedSource: null,
   isLoading: false,
   limit: 5,
@@ -41,6 +44,8 @@ export default function reducer(state = ReducerRecord, action) {
       return Object.assign({}, state, {limit: payload})
     case EDIT_PAGE_NUMBER:
       return Object.assign({}, state, {page: payload})
+    case EDIT_PAGE_TABS:
+      return Object.assign({}, state, {activeTabs: payload})
     default:
       return state
   }
@@ -56,9 +61,22 @@ export const stateSelector = state => state
 // export const sourceListSelector = state => state.sourceList
 export const pageNumberSelector = state => state.page
 export const pageLimitSelector = state => state.limit
+export const tabListSelector = state => state.tabList
+export const activeTabsSelector = state => state.activeTabs
 
 export const sourceListSelector = createSelector(stateSelector, state => {
-  return getTableData(state.limit, state.page)[0] || []
+  const tabs = state.activeTabs
+  if(!tabs.length){
+    return getTableData(state.limit, state.page)[0]
+  }
+
+  return getTableData(state.limit, state.page)[0].filter(f => {
+    if(tabs.find(tab => f.sourceType === tab)) {
+      return true
+    }
+    return false
+  })
+
 })
 
 
@@ -86,3 +104,10 @@ export const editPageNumber = (page) => ({
   type: EDIT_PAGE_NUMBER,
   payload: page
 })
+
+export const setActiveTabs = (tabs) => (dispatch) => {
+  dispatch({
+    type: EDIT_PAGE_TABS,
+    payload: tabs
+  })
+}

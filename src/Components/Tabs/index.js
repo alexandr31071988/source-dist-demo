@@ -1,38 +1,33 @@
 import React from "react"
-
+import {connect} from 'react-redux'
+import {tabListSelector, activeTabsSelector, setActiveTabs} from '../../redux/sources'
 import './style.css'
 
 const Tabs = ({tabList, activeTabs, setActiveTabs}) => {
-
-
+  console.log(tabList, activeTabs)
   return (
     <div className='tablist__container'>
       {tabList && tabList.map((tab, tabKey) => {
-        const isActive = activeTabs.find(f => f === tab.name)
+        const isActive = activeTabs.find(f => f === tab)
         return <button className={isActive ? "button__btn active" : "button__btn"}
-          key={tabKey + tab.name}
+          key={tabKey + tab}
           onClick={() => {
-            if(!activeTabs.find(f => f === tab.name)){
-              setActiveTabs(preTabs => {
-                const newData = [...preTabs, tab.name]
-                tab.action(newData)
-                return newData
-              })
+            if(!activeTabs.find(f => f === tab)){
+              setActiveTabs([...activeTabs, tab])
             } else {
-              setActiveTabs(preTabs => {
-                const newData = preTabs.filter(f => f !== tab.name)
-                tab.action(newData)
-                return newData
-              })
+              setActiveTabs(activeTabs.filter(f => f !== tab))
             }
           }}
-          style={{backgroundColor: activeTabs.find(f => f === tab.name) ? "#5E35B1" : "rgba(94, 53, 177, 0.1)"}}
+          style={{backgroundColor: activeTabs.find(f => f === tab) ? "#5E35B1" : "rgba(94, 53, 177, 0.1)"}}
         >
-          {tab.name}
+          {tab}
         </button>
       })}
     </div>
   )
 }
 
-export default Tabs
+export default connect((store) => ({
+  tabList: tabListSelector(store),
+  activeTabs: activeTabsSelector(store),
+}), {setActiveTabs})(Tabs)

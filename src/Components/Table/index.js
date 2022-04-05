@@ -20,9 +20,7 @@ const THead = () => {
   )
 }
 
-const TBody = ({tableLines, onEditTable}) => {
-  const [editData, setEditData] = useState(null)
-  const handleChangeEditData = (value) => () => setEditData(() => value)
+const TBody = ({tableLines, handleChangeEditData}) => {
   return (
     <tbody className='body__container'>
       {tableLines && tableLines.map((tableLine, tableLineKey) => <tr className='table__row_container' key={JSON.stringify(tableLine) + tableLineKey}>
@@ -30,20 +28,23 @@ const TBody = ({tableLines, onEditTable}) => {
           {tableRows[item].content(tableLine[item], handleChangeEditData(tableLine))}
         </td>)}
       </tr>)}
-
-      <Modal isOpen={editData} setIsOpenModal={handleChangeEditData(null)}>
-        <EditForm initialState={editData} onCloseEditForm={handleChangeEditData(null)} onEditTable={onEditTable}/>
-      </Modal>
     </tbody>
   )
 }
 
-const Table = ({...props}) => {
+const Table = ({onEditTable, ...props}) => {
+  const [editData, setEditData] = useState(null)
+  const handleChangeEditData = (value) => () => setEditData(() => value)
   return (
+    <>
     <table className='table__container'>
       <THead/>
-      <TBody {...props}/>
+      <TBody editData={editData} setEditData={setEditData} handleChangeEditData={handleChangeEditData} {...props}/>
     </table>
+    <Modal isOpen={editData} setIsOpenModal={handleChangeEditData(null)}>
+      <EditForm initialState={editData} onCloseEditForm={handleChangeEditData(null)} onEditTable={onEditTable}/>
+    </Modal>
+    </>
   )
 }
 
