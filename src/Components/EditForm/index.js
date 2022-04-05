@@ -4,7 +4,7 @@ import './style.scss'
 import Modal from "../Modal";
 import React, {useState, useCallback} from "react"
 import Confirm from "../Confirm";
-import { Switch, SwitchThumb } from '@radix-ui/react-switch';
+import Switcher from '../../UI/Switcher'
 
 
 const validate = values => {
@@ -63,23 +63,11 @@ const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
                 value={values.capacity}
               />
               {errors.capacity && touched.capacity && errors.capacity}
-              <div className='opposition'>Оппозиция</div>
-              <input 
-                type="checkbox" 
-                name="isOpposition"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                checked={values.isOpposition}
-              />
+              <label className='opposition item'>Оппозиция <Switcher defaultValue={values.isOpposition} callback={handleChange} name="isOpposition"/></label>
+
               {errors.isOpposition && touched.isOpposition && errors.isOpposition}
-              <div className='the-original-source'>Первоисточник</div>
-              <input                
-                type="checkbox" 
-                name="origin"   
-                onChange={handleChange}
-                onBlur={handleBlur}
-                checked={values.origin}
-              />
+              <div className='the-original-source item'>Первоисточник <Switcher defaultValue={values.origin} callback={handleChange} name="origin"/></div>
+
             
               {errors.origin && touched.origin && errors.origin}
               <button type="Submit" disabled={isSubmitting}>

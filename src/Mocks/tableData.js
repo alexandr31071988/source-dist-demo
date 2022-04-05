@@ -67,8 +67,8 @@ export const tableLines = [
     countArticles: "1 348 094",
     countInfoPods: "218 464 443",
     sourceType: "Оппозиция",
-    isOpposition: "",
-    origin: "",
+    isOpposition: true,
+    origin: true,
     edit: ""
   },
   {

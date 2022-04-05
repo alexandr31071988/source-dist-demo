@@ -1,0 +1,23 @@
+
+.switch__container {
+  width: 50px;
+  height: 25px;
+  border: 2px solid #BABDCD;
+  border-radius: 25px;
+  background: #7A7C8B;
+  padding:0 5px;
+  position: relative;
+  transition-duration: 300ms;
+
+  .switch_position {
+    background: #FFFFFF;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #BABDCD;
+    border-radius: 50%;
+    cursor: pointer;
+    top:4px;
+    position: absolute;
+    transition-duration: 300ms;
+  }
+}

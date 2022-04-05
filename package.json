@@ -3,11 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@radix-ui/react-switch": "^0.1.5",
-=======
-    "@reduxjs/toolkit": "^1.8.0",
->>>>>>> a656cb874357d0b17024b05229fc73cffb5d1bb7
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
