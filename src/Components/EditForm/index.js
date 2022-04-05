@@ -4,6 +4,8 @@ import './style.scss'
 import Modal from "../Modal";
 import React, {useState, useCallback} from "react"
 import Confirm from "../Confirm";
+import { Switch, SwitchThumb } from '@radix-ui/react-switch';
+
 
 const validate = values => {
   const errors = {};
@@ -18,7 +20,7 @@ const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
 
   return (
     <>
-      <div className="edit-form-title"><h1>Edit Source</h1> <img src={CloseIcon} onClick={onCloseEditForm}/></div>
+      <div className="edit-form-title"><h1>Редактировать источник</h1> <img src={CloseIcon} onClick={onCloseEditForm}/></div>
       <Formik
         initialValues={initialState}
         validate={validate}
@@ -43,6 +45,7 @@ const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
           const handleCloseConfirmModal = () => setIsOpenConfirm(false)
           return (
             <form onSubmit={handleSubmit}>
+              <div className='name-of-the-source'>Название источника<span> *</span></div>
               <input
                 type="text"
                 name="sourceName"
@@ -51,6 +54,7 @@ const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
                 value={values.sourceName}
               />
               {errors.sourceName && touched.sourceName && errors.sourceName}
+              <div className='editorial-coverage'>Редакционный охват<span> *</span></div>
               <input
                 type="text"
                 name="capacity"
@@ -59,26 +63,27 @@ const EditForm = ({initialState, onCloseEditForm, onEditTable}) => {
                 value={values.capacity}
               />
               {errors.capacity && touched.capacity && errors.capacity}
-
-              <input
-                type="checkbox"
+              <div className='opposition'>Оппозиция</div>
+              <input 
+                type="checkbox" 
                 name="isOpposition"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 checked={values.isOpposition}
               />
               {errors.isOpposition && touched.isOpposition && errors.isOpposition}
-
-              <input
-                type="checkbox"
-                name="origin"
+              <div className='the-original-source'>Первоисточник</div>
+              <input                
+                type="checkbox" 
+                name="origin"   
                 onChange={handleChange}
                 onBlur={handleBlur}
                 checked={values.origin}
               />
+            
               {errors.origin && touched.origin && errors.origin}
-              <button type="submit" disabled={isSubmitting}>
-                Submit
+              <button type="Submit" disabled={isSubmitting}>
+                Сохранить
               </button>
               <Modal isOpen={isOpenConfirm} setIsOpenModal={handleCloseConfirmModal}>
                 <Confirm

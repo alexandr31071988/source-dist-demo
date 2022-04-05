@@ -6,6 +6,8 @@ import Table from './Components/Table'
 import Header from './Components/Header'
 import Pagination from './Components/Pagination'
 
+
+
 function App() {
   const [pagPage, setPagPage] = useState(1)
   const [pagLimit, setPagLimit] = useState(5)
@@ -27,6 +29,7 @@ function App() {
       })
     })
   }, [])
+
 
   return (
     <main className='main__container'>

@@ -22,3 +22,76 @@
   }
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  
+
+  input {
+    position: relative;
+    left: 350px;
+    top: -30px;
+    height: 20px;
+  }
+  
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 107px;
+    height: 40px;
+    position: relative;
+    left: 250px;
+    background: #5E35B1;
+    border-radius: 6px;
+    border: 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #FFFFFF;
+    cursor: pointer;
+  } 
+
+}
+
+.name-of-the-source {
+  padding: 10px 40px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  font-family: 'Roboto', serif;
+
+  span {
+    color: red;
+  }
+}
+
+.editorial-coverage {
+  padding: 5px 40px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  font-family: 'Roboto', serif;
+
+  span {
+    color: red;
+  }
+}
+
+.opposition {
+  padding: 5px 40px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  font-family: 'Roboto', serif;
+}
+
+.the-original-source {
+  padding: 5px 40px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  font-family: 'Roboto', serif;
+}
